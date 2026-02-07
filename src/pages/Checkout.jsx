@@ -1,11 +1,12 @@
 import { useState } from "react";
 import useBookContext from "../contexts/BookContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { addNewOrder } from "../customHooks/useHandleOrders";
 
 const Checkout = () => {
   const {
     cartItems,
+    cartLoading,
     setCartItems,
     removeItemFromCart,
     deliveryCharges,
@@ -20,13 +21,12 @@ const Checkout = () => {
 
   //   console.log(userProfile.address);
 
-  const totalNumberOfItems = cartItems.reduce(
-    (acc, curr) => acc + curr.quantity,
-    0,
-  );
+  const totalNumberOfItems =
+    cartItems && cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
   const totalPrice =
+    cartItems &&
     cartItems.reduce((acc, curr) => acc + curr.quantity * curr.price, 0) +
-    deliveryCharges;
+      deliveryCharges;
   const addresses = userProfile.address;
   // console.log(totalNumberOfItems);
   // console.log(totalPrice);
@@ -80,68 +80,78 @@ const Checkout = () => {
     <div className="bg-body-tertiary py-2">
       <div className="container position-relative">
         <h1>Checkout</h1>
-        {cartItems.length !== 0 ? (
-          <>
-            <div>
-              {cartItems.map((book) => (
-                <div key={book._id} className="d-flex justify-content-between">
-                  <div>
-                    <h3>{book.title}</h3>
-                    <p>Quantity: {book.quantity}</p>
-                  </div>
-                  <div>
-                    <strong>INR {book.quantity * book.price}</strong>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="text-end">
-              <hr />
-              <p>
-                <strong>Delivery Charges: INR {deliveryCharges}</strong>
-              </p>
-              <hr />
-              <p>
-                <strong>Total Price: INR {totalPrice}</strong>
-              </p>
-            </div>
-            <div>
-              <h4>Choose Delivery Address:</h4>
-              {addresses.map((add) => (
-                <div
-                  onClick={() => handleAddressSelect(add._id)}
-                  key={add._id}
-                  role="button"
-                >
-                  <strong>{add.title}</strong>
-                  <p>{add.location}</p>
-                  <hr />
-                </div>
-              ))}
-            </div>
-            {deliveryAddress && (
+        {cartLoading && <p>Loading...</p>}
+        {!cartLoading &&
+          (cartItems.length !== 0 ? (
+            <>
               <div>
-                <strong>Delivery Address:</strong>
-                {
-                  <div>
-                    <strong>{deliveryAddress.title}</strong>
-                    <p>{deliveryAddress.location}</p>
+                {cartItems.map((book) => (
+                  <div
+                    key={book._id}
+                    className="d-flex justify-content-between"
+                  >
+                    <div>
+                      <h3>{book.title}</h3>
+                      <p>Quantity: {book.quantity}</p>
+                    </div>
+                    <div>
+                      <strong>INR {book.quantity * book.price}</strong>
+                    </div>
                   </div>
-                }
+                ))}
               </div>
-            )}
-            <button className="btn btn-primary" onClick={handleCheckout}>
-              Checkout
-            </button>
-            {displayMessage && (
-              <strong className="fs-4 bg-white text-success rounded position-absolute top-0 end-50 p-3">
-                Order Placed Successfully.
-              </strong>
-            )}
-          </>
-        ) : (
-          <p>Cart is empty</p>
-        )}
+              <div className="text-end">
+                <hr />
+                <p>
+                  <strong>Delivery Charges: INR {deliveryCharges}</strong>
+                </p>
+                <hr />
+                <p>
+                  <strong>Total Price: INR {totalPrice}</strong>
+                </p>
+              </div>
+              <div>
+                <h4>Choose Delivery Address:</h4>
+                {addresses.map((add) => (
+                  <div
+                    onClick={() => handleAddressSelect(add._id)}
+                    key={add._id}
+                    role="button"
+                  >
+                    <strong>{add.title}</strong>
+                    <p>{add.location}</p>
+                    <hr />
+                  </div>
+                ))}
+              </div>
+              <div>
+                <Link className="btn btn-outline-info my-2" to="/userprofile">
+                  Add New Address
+                </Link>
+              </div>
+              {deliveryAddress && (
+                <div>
+                  <strong>Delivery Address:</strong>
+                  {
+                    <div>
+                      <strong>{deliveryAddress.title}</strong>
+                      <p>{deliveryAddress.location}</p>
+                    </div>
+                  }
+                </div>
+              )}
+              <button className="btn btn-primary my-2" onClick={handleCheckout}>
+                Checkout
+              </button>
+              {displayMessage && (
+                <strong className="fs-4 bg-white text-success rounded position-absolute top-0 end-50 p-3">
+                  Order Placed Successfully.
+                </strong>
+              )}
+            </>
+          ) : (
+            <p>Cart is empty</p>
+          ))}
       </div>
     </div>
   );

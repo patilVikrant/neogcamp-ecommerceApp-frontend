@@ -2,9 +2,10 @@ import useBookContext from "../contexts/BookContext";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { topRatedBooks } = useBookContext();
+  const { topRatedBooks, loading } = useBookContext();
   // console.log(books);
-  // console.log(topRatedBooks);
+  console.log(topRatedBooks);
+  console.log(loading);
 
   return (
     <div className="bg-body-tertiary py-2">
@@ -47,7 +48,8 @@ const Home = () => {
         <div>
           <h2>Top Rated Books</h2>
           <div className="d-flex gap-2 flex-wrap justify-content-between py-4">
-            {topRatedBooks ? (
+            {loading && <p>Loading...</p>}
+            {topRatedBooks &&
               topRatedBooks.map((book) => (
                 <Link
                   key={book._id}
@@ -68,10 +70,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Link>
-              ))
-            ) : (
-              <p>Loading...</p>
-            )}
+              ))}
           </div>
         </div>
       </div>

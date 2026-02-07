@@ -2,7 +2,7 @@ import useBookContext from "../contexts/BookContext";
 import { Link } from "react-router-dom";
 
 const Orders = () => {
-  const { orders } = useBookContext();
+  const { orders, orderLoading } = useBookContext();
   // console.log(orders);
 
   return (
@@ -10,9 +10,11 @@ const Orders = () => {
       <div className="container">
         <h1>Orders</h1>
         <div>
-          {orders.length === 0 ? (
+          {orderLoading && <p>Loading...</p>}
+          {orders && orders.length === 0 ? (
             <p>No orders to show.</p>
           ) : (
+            orders &&
             orders.map((order) => (
               <div key={order._id} className="bg-white p-4 rounded my-4">
                 <Link

@@ -41,18 +41,24 @@ const userData = {
 };
 
 export function BookProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
-  const [wishlistItems, setWishlistItems] = useState([]);
+  const [cartItems, setCartItems] = useState(null);
+  const [cartLoading, setCartLoading] = useState(true);
+  const [wishlistItems, setWishlistItems] = useState(null);
+  const [wishlistLoading, setWishlistLoading] = useState(true);
   const [userProfile, setUserProfile] = useState(userData);
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState(null);
+  const [orderLoading, setOrderLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchText, setSearchText] = useState("");
   const deliveryCharges = 199;
-  const booksData = useBooksData(
+  const { data: booksData, loading } = useBooksData(
     "https://neogcamp-ecommerce-app-backend.vercel.app/books",
   );
+
+  // console.log(booksData);
+  // console.log(loading);
 
   // console.log(orders);
 
@@ -62,19 +68,25 @@ export function BookProvider({ children }) {
   useEffect(() => {
     const loadCartItems = async () => {
       try {
+        setCartLoading(true);
         const data = await getCartItems();
         setCartItems(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setCartLoading(false);
       }
     };
 
     const loadWishlist = async () => {
       try {
+        setWishlistLoading(true);
         const data = await getWishlist();
         setWishlistItems(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setWishlistLoading(false);
       }
     };
 
@@ -92,10 +104,13 @@ export function BookProvider({ children }) {
 
     const loadOrders = async () => {
       try {
+        setOrderLoading(true);
         const data = await getAllOrders();
         setOrders(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setOrderLoading(false);
       }
     };
 
@@ -209,13 +224,16 @@ export function BookProvider({ children }) {
       value={{
         books,
         topRatedBooks,
+        loading,
         cartItems,
+        cartLoading,
         setCartItems,
         addToCart,
         increaseItemQuantity,
         decreaseItemQuantity,
         removeItemFromCart,
         wishlistItems,
+        wishlistLoading,
         setWishlistItems,
         toggleWishlistItems,
         userData,
@@ -227,6 +245,7 @@ export function BookProvider({ children }) {
         setLocation,
         orders,
         setOrders,
+        orderLoading,
         searchQuery,
         setSearchQuery,
         searchText,

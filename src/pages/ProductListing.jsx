@@ -17,6 +17,8 @@ const ProductListing = () => {
   const [itemCategory, setItemCategory] = useState([]);
   const [itemRating, setItemRating] = useState("");
 
+  console.log(books);
+
   // console.log(wishlistItems);
 
   const priceChangeHandler = (event) => {
@@ -264,6 +266,10 @@ const ProductListing = () => {
                       <p className="card-text">
                         <strong>Author: </strong>
                         {book.author}
+                      </p>
+                      <p className="card-text">
+                        <strong>Rating: </strong>
+                        {book.rating}
                       </p>
                       <p className="card-text">
                         <strong>Price: </strong>INR {book.price}

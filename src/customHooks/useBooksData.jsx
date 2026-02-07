@@ -1,21 +1,30 @@
 import { useEffect, useState } from "react";
 
 const useBooksData = (url) => {
-  const [books, setBooks] = useState(null);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const responseData = await response.json();
-        setBooks(responseData);
+        setData(responseData);
       } catch (error) {
-        console.log(error);
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchBooks();
+    fetchData();
   }, [url]);
-  return books;
+  return { loading, data };
 };
 
 export default useBooksData;
