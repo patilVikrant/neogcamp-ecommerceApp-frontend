@@ -1,12 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useBookContext from "../contexts/BookContext";
 
 const Header = () => {
   const { searchText, setSearchText, setSearchQuery } = useBookContext();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchQuery(searchText);
+    navigate("/books");
   };
   return (
     <header className="bg-body-tertiary">

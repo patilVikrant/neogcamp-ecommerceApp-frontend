@@ -50,6 +50,7 @@ export function BookProvider({ children }) {
   const [orderLoading, setOrderLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
+  const [addressLoading, setAddressLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchText, setSearchText] = useState("");
   const deliveryCharges = 199;
@@ -92,6 +93,7 @@ export function BookProvider({ children }) {
 
     const loadAddresses = async () => {
       try {
+        setAddressLoading(true);
         const data = await getAllAddresses();
         setUserProfile((prevValue) => ({
           ...prevValue,
@@ -99,6 +101,8 @@ export function BookProvider({ children }) {
         }));
       } catch (error) {
         console.log(error);
+      } finally {
+        setAddressLoading(false);
       }
     };
 
@@ -243,6 +247,7 @@ export function BookProvider({ children }) {
         setTitle,
         location,
         setLocation,
+        addressLoading,
         orders,
         setOrders,
         orderLoading,

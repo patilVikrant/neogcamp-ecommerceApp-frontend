@@ -286,6 +286,7 @@ const ProductListing = () => {
                       >
                         Add to cart
                       </button>
+                      <ToastContainer />
                     </div>
                   </div>
                 ))
