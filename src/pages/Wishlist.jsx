@@ -14,8 +14,8 @@ const Wishlist = () => {
   console.log(wishlistItems);
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container pb-5">
         <h1 className="text-center">
           My Wishlist{" "}
           {!wishlistLoading && <span>({wishlistItems.length})</span>}

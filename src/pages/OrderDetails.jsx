@@ -8,8 +8,8 @@ const OrderDetails = () => {
   // console.log(currentOrder);
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container pb-5">
         <h1>Order Details</h1>
         {orderLoading && <p>Loading...</p>}
         {currentOrder && (

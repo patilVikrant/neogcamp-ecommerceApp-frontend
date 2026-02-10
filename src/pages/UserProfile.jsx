@@ -60,8 +60,8 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container pb-5">
         <h1>User Profile</h1>
         {addressLoading && <p>Loading...</p>}
         {!addressLoading && (

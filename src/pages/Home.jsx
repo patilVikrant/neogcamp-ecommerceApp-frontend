@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const { topRatedBooks, loading } = useBookContext();
   // console.log(books);
-  console.log(topRatedBooks);
-  console.log(loading);
+  // console.log(topRatedBooks);
+  // console.log(loading);
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container pb-5">
         <div className=" col-xxl-8 py-3">
           {" "}
           <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -45,16 +45,16 @@ const Home = () => {
             </div>{" "}
           </div>{" "}
         </div>
-        <div>
+        <div className="my-4">
           <h2>Top Rated Books</h2>
-          <div className="d-flex gap-2 flex-wrap justify-content-between py-4">
+          <div className="row g-4 py-4">
             {loading && <p>Loading...</p>}
             {topRatedBooks &&
               topRatedBooks.map((book) => (
                 <Link
                   key={book._id}
                   to={`/books/${book._id}`}
-                  className="text-decoration-none text-dark"
+                  className="col-12 col-sm-5 col-md-4 col-lg-2 text-decoration-none text-dark"
                 >
                   <div
                     className="card"

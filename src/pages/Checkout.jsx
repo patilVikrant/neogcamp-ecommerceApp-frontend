@@ -2,6 +2,7 @@ import { useState } from "react";
 import useBookContext from "../contexts/BookContext";
 import { useNavigate, Link } from "react-router-dom";
 import { addNewOrder } from "../customHooks/useHandleOrders";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const {
@@ -17,7 +18,6 @@ const Checkout = () => {
   const [deliveryAddress, setDeliveryAddress] = useState("");
   // console.log(deliveryAddress);
   const navigate = useNavigate();
-  const [displayMessage, setDisplayMessage] = useState(false);
 
   //   console.log(userProfile.address);
 
@@ -41,7 +41,7 @@ const Checkout = () => {
       alert("Please select Delivery address");
       return;
     }
-    setDisplayMessage(true);
+
     const order = {
       items: cartItems.map((book) => ({
         title: book.title,
@@ -67,18 +67,18 @@ const Checkout = () => {
     const newOrder = await addNewOrder(order);
 
     setOrders((prevValue) => [...prevValue, newOrder]);
+    toast.success("Order placed successfully!");
 
     setTimeout(() => {
-      setDisplayMessage(false);
-      cartItems.forEach((item) => removeItemFromCart(item._id));
+      cartItems.forEach((item) => removeItemFromCart(item._id, true));
       setCartItems([]);
       navigate("/orders");
     }, 3000);
   };
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container position-relative">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container position-relative pb-5">
         <h1>Checkout</h1>
         {cartLoading && <p>Loading...</p>}
         {!cartLoading &&
@@ -143,11 +143,6 @@ const Checkout = () => {
               <button className="btn btn-primary my-2" onClick={handleCheckout}>
                 Checkout
               </button>
-              {displayMessage && (
-                <strong className="fs-4 bg-white text-success rounded position-absolute top-0 end-50 p-3">
-                  Order Placed Successfully.
-                </strong>
-              )}
             </>
           ) : (
             <p>Cart is empty</p>

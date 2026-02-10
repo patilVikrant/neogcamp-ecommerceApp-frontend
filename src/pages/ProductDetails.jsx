@@ -26,15 +26,15 @@ const ProductDetails = () => {
     wishlistItems && wishlistItems.find((book) => book._id == id);
 
   const handleBuyNow = async () => {
-    cartItems.forEach((item) => removeItemFromCart(item._id));
-    await addToCart(requiredBook._id);
+    cartItems.forEach((item) => removeItemFromCart(item._id, true));
+    await addToCart(requiredBook._id, true);
     setCartItems([{ ...requiredBook, quantity: 1 }]);
     navigate("/cart");
   };
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container pb-5">
         {loading && <p>Loading...</p>}
         {requiredBook && (
           <div className="d-flex gap-4 bg-white row">

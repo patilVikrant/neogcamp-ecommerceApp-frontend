@@ -28,8 +28,8 @@ const EditAddressForm = () => {
     }
   };
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container pb-5">
         <form onSubmit={handleEditFormSubmit}>
           <h3>Edit Address</h3>
           <label className="form-label my-2">Title:</label>

@@ -18,6 +18,7 @@ import {
 import { getAllAddresses } from "../customHooks/useHandleAddresses";
 
 import { getAllOrders } from "../customHooks/useHandleOrders";
+import { toast } from "react-toastify";
 
 const BookContext = createContext();
 
@@ -57,6 +58,7 @@ export function BookProvider({ children }) {
   const { data: booksData, loading } = useBooksData(
     "https://neogcamp-ecommerce-app-backend.vercel.app/books",
   );
+  // console.log(cartItems);
 
   // console.log(booksData);
   // console.log(loading);
@@ -128,6 +130,7 @@ export function BookProvider({ children }) {
     try {
       const addedItem = await addToWishlist(book);
       setWishlistItems((prevValue) => [...prevValue, addedItem]);
+      toast.success("Added to wishlist");
     } catch (error) {
       console.log(error);
     }
@@ -141,12 +144,13 @@ export function BookProvider({ children }) {
       setWishlistItems((prevValue) => {
         return prevValue.filter((book) => book._id !== id);
       });
+      toast.info("Removed from wishlist");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const addToCart = async (id) => {
+  const addToCart = async (id, silent = false) => {
     try {
       const bookToAdd = booksData.find((book) => book._id === id);
       const addedItem = await addItemToCart(bookToAdd);
@@ -158,6 +162,9 @@ export function BookProvider({ children }) {
           return prevValue.map((book) => (book._id === id ? addedItem : book));
         }
       });
+      if (!silent) {
+        toast.success("Added to cart");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -172,6 +179,7 @@ export function BookProvider({ children }) {
           book._id == id ? { ...book, quantity: book.quantity + 1 } : book,
         ),
       );
+      toast.success("Quantity increased");
     } catch (error) {
       console.log(error);
     }
@@ -188,16 +196,20 @@ export function BookProvider({ children }) {
           )
           .filter((book) => book.quantity > 0),
       );
+      toast.info("Quantity decreased");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const removeItemFromCart = async (id) => {
+  const removeItemFromCart = async (id, silent = false) => {
     try {
       const deletedItem = await deleteItemFromCart(id);
       console.log(deletedItem);
       setCartItems((prevValue) => prevValue.filter((book) => book._id !== id));
+      if (!silent) {
+        toast.info("Removed from cart");
+      }
     } catch (error) {
       console.log(error);
     }

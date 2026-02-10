@@ -6,8 +6,8 @@ const Orders = () => {
   // console.log(orders);
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container pb-5">
         <h1>Orders</h1>
         <div>
           {orderLoading && <p>Loading...</p>}

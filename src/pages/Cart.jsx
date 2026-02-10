@@ -16,8 +16,8 @@ const Cart = () => {
   // console.log(cartItems);
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5 mb-4">
+      <div className="container pb-5">
         <h1 className="text-center">
           MY CART{" "}
           {!cartLoading && (
@@ -35,31 +35,29 @@ const Cart = () => {
           {cartItems && cartItems.length === 0 ? (
             <p>Cart is empty</p>
           ) : (
-            <div className="d-flex justify-content-between">
-              <div>
+            <div className="row g-4">
+              <div className="col-12 col-lg-8">
                 {cartItems &&
                   cartItems.map((book) => (
-                    <div
-                      key={book._id}
-                      className="card mb-3"
-                      style={{ width: "550px" }}
-                    >
+                    <div key={book._id} className="card mb-4">
                       <div className="row g-0">
-                        <div className="col-md-6">
+                        <div className="col-4 col-md-4">
                           <img
                             src={book.image}
-                            className="img-fluid rounded-start w-100"
+                            className="img-fluid rounded-start h-100 object-fit-cover"
                             alt="book-cover-page"
                           />
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-8 col-md-8">
                           <div className="card-body">
                             <h5 className="card-title">{book.title}</h5>
                             <p className="card-text">INR {book.price}</p>
                             <p className="card-text">
                               <button
                                 className="btn btn-outline-secondary me-3"
-                                onClick={() => decreaseItemQuantity(book._id)}
+                                onClick={() => {
+                                  decreaseItemQuantity(book._id);
+                                }}
                               >
                                 -
                               </button>
@@ -99,7 +97,7 @@ const Cart = () => {
                   ))}
               </div>
               {cartItems && (
-                <div className="w-25 p-4 bg-white h-50">
+                <div className="col-12 col-lg-4 p-4 bg-white h-50">
                   <h3>PRICE DETAILS</h3>
                   <hr />
                   <p className="d-flex justify-content-between">

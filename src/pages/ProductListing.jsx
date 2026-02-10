@@ -5,6 +5,7 @@ import { useState } from "react";
 const ProductListing = () => {
   const {
     books,
+    cartItems,
     addToCart,
     wishlistItems,
     toggleWishlistItems,
@@ -17,7 +18,7 @@ const ProductListing = () => {
   const [itemCategory, setItemCategory] = useState([]);
   const [itemRating, setItemRating] = useState("");
 
-  console.log(books);
+  // console.log(books);
 
   // console.log(wishlistItems);
 
@@ -73,8 +74,8 @@ const ProductListing = () => {
   };
 
   return (
-    <div className="bg-body-tertiary py-2">
-      <div className="container">
+    <div className="bg-body-tertiary py-2 pb-5">
+      <div className="container pb-5">
         <h1>All Books</h1>
         {searchQuery && (
           <button onClick={showAllBooks} className="btn btn-primary my-2">
@@ -92,7 +93,7 @@ const ProductListing = () => {
 
         <div>
           {filterDisplay && (
-            <div className="position-absolute w-25 p-4 bg-light z-3 rounded bg-opacity-75">
+            <div className="position-absolute mt-4 w-25 p-4 bg-light z-3 rounded">
               <h2>Filters</h2>
               <button className="btn btn-secondary my-3" onClick={resetFilters}>
                 Reset
@@ -238,54 +239,65 @@ const ProductListing = () => {
               </div>
             </div>
           )}
-          <div className={`d-flex flex-wrap gap-4`}>
+          <div className="row g-4">
             {filteredBooks ? (
               filteredBooks.length !== 0 ? (
                 filteredBooks.map((book) => (
                   <div
                     key={book._id}
-                    className="card"
-                    style={{ width: "350px", height: "450px" }}
+                    className="col-12 col-sm-6 col-md-4 col-lg-4 d-flex"
                   >
-                    <img
-                      src={book.image}
-                      className="card-img-top w-100 h-50"
-                      alt="book-cover-page"
-                    />
-                    <span
-                      className="badge rounded-pill text-bg-light py-2 position-absolute top-0 end-0 m-2"
-                      onClick={() => toggleWishlistItems(book._id)}
-                      role="button"
+                    <div
+                      className="card"
+                      style={{ width: "375px", height: "475px" }}
                     >
-                      {wishlistItems.find((item) => item._id == book._id)
-                        ? "❤"
-                        : "🤍"}
-                    </span>
-                    <div className="card-body">
-                      <h5 className="card-title">{book.title}</h5>
-                      <p className="card-text">
-                        <strong>Author: </strong>
-                        {book.author}
-                      </p>
-                      <p className="card-text">
-                        <strong>Rating: </strong>
-                        {book.rating}
-                      </p>
-                      <p className="card-text">
-                        <strong>Price: </strong>INR {book.price}
-                      </p>
-                      <Link
-                        to={`/books/${book._id}`}
-                        className="btn btn-primary"
+                      <img
+                        src={book.image}
+                        className="card-img-top w-100 h-50"
+                        alt="book-cover-page"
+                      />
+                      <span
+                        className="badge rounded-pill text-bg-light py-2 position-absolute top-0 end-0 m-2"
+                        onClick={() => toggleWishlistItems(book._id)}
+                        role="button"
                       >
-                        Details
-                      </Link>
-                      <button
-                        className="btn btn-outline-secondary mx-2"
-                        onClick={() => addToCart(book._id)}
-                      >
-                        Add to cart
-                      </button>
+                        {wishlistItems.find((item) => item._id == book._id)
+                          ? "❤"
+                          : "🤍"}
+                      </span>
+                      {cartItems.find((item) => item._id == book._id) ? (
+                        <span className="badge rounded-pill text-bg-light py-2 position-absolute  top-50 end-0 m-2">
+                          🛒
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                      <div className="card-body">
+                        <h5 className="card-title">{book.title}</h5>
+                        <p className="card-text">
+                          <strong>Author: </strong>
+                          {book.author}
+                        </p>
+                        <p className="card-text">
+                          <strong>Rating: </strong>
+                          {book.rating}
+                        </p>
+                        <p className="card-text">
+                          <strong>Price: </strong>INR {book.price}
+                        </p>
+                        <Link
+                          to={`/books/${book._id}`}
+                          className="btn btn-primary"
+                        >
+                          Details
+                        </Link>
+                        <button
+                          className="btn btn-outline-secondary mx-2"
+                          onClick={() => addToCart(book._id)}
+                        >
+                          Add to cart
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))
