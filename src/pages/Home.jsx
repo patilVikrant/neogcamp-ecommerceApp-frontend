@@ -47,7 +47,7 @@ const Home = () => {
         </div>
         <div className="my-4">
           <h2>Top Rated Books</h2>
-          <div className="row g-4 py-4">
+          <div className="row g-4 py-4 justify-content-center justify-content-md-start">
             {loading && <p>Loading...</p>}
             {topRatedBooks &&
               topRatedBooks.map((book) => (
@@ -55,11 +55,9 @@ const Home = () => {
                   key={book._id}
                   to={`/books/${book._id}`}
                   className="col-12 col-sm-5 col-md-4 col-lg-2 text-decoration-none text-dark"
+                  style={{ width: "175px", height: "275px" }}
                 >
-                  <div
-                    className="card"
-                    style={{ width: "175px", height: "275px" }}
-                  >
+                  <div className="card h-100">
                     <img
                       src={book.image}
                       className="card-img-top w-100 h-50"

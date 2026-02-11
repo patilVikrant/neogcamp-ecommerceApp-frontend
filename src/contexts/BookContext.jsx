@@ -229,9 +229,15 @@ export function BookProvider({ children }) {
     }
   }
 
+  // const books = searchQuery
+  //   ? booksData.filter(
+  //       (book) => book.title.toLowerCase() === searchQuery.toLowerCase(),
+  //     )
+  //   : booksData;
+
   const books = searchQuery
-    ? booksData.filter(
-        (book) => book.title.toLocaleLowerCase() === searchQuery.toLowerCase(),
+    ? booksData.filter((book) =>
+        book.title.toLowerCase().includes(searchQuery.toLowerCase()),
       )
     : booksData;
 

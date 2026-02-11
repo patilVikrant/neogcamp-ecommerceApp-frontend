@@ -2,7 +2,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useBookContext from "../contexts/BookContext";
 
 const Header = () => {
-  const { searchText, setSearchText, setSearchQuery } = useBookContext();
+  const {
+    searchText,
+    setSearchText,
+    setSearchQuery,
+    wishlistItems,
+    cartItems,
+  } = useBookContext();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -42,12 +48,25 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/wishlist">
-                  Wishlist
+                  Wishlist{" "}
+                  {wishlistItems && <span>({wishlistItems.length})</span>}
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/cart">
-                  Cart
+                  Cart{" "}
+                  {cartItems && (
+                    <span>
+                      (
+                      {cartItems.length === 0
+                        ? 0
+                        : cartItems.reduce(
+                            (acc, curr) => acc + curr.quantity,
+                            0,
+                          )}
+                      )
+                    </span>
+                  )}
                 </NavLink>
               </li>
               <li className="nav-item">
