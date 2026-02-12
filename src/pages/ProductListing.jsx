@@ -245,7 +245,7 @@ const ProductListing = () => {
                 filteredBooks.map((book) => (
                   <div
                     key={book._id}
-                    className="col-12 col-sm-6 col-md-4 col-lg-4 d-flex"
+                    className="col-12 col-sm-6 col-md-4 col-lg-4 d-flex justify-content-center justify-content-md-start"
                   >
                     <div
                       className="card"
