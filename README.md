@@ -27,6 +27,7 @@ npm run dev
 - React JS
 - React Router DOM
 - React Context
+- Bootstrap
 - Node JS
 - Express
 - MongoDB
@@ -94,7 +95,20 @@ List all books<br>
 Sample Response:<br>
 
 ```
-[{_id, title, author, price, rating, category, publicationHouse, image, description }, ....]
+[
+  {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here..."
+  },
+  ...
+]
 ```
 
 ### **GET /books/:id**<br>
@@ -104,7 +118,17 @@ List details of single book<br>
 Sample Response:<br>
 
 ```
-{_id, title, author, price, rating, category, publicationHouse, image, description }
+{
+  "_id": "...",
+  "title": "Book Name",
+  "author": "Author Name",
+  "price": 299,
+  "rating": 4.5,
+  "category": "Fiction",
+  "publicationHouse": "Publisher Name",
+  "image": "https://...",
+  "description": "Book description here..."
+}
 ```
 
 ### **GET /cart**<br>
@@ -114,7 +138,21 @@ List details of books added to the cart<br>
 Sample Response:<br>
 
 ```
-[{_id, title, author, price, rating, category, publicationHouse, image, description, quantity }, ...]
+[
+  {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here...",
+    "quantity": 2
+  },
+  ...
+]
 ```
 
 ### **POST /cart**<br>
@@ -124,7 +162,21 @@ Adds a new item to the cart<br>
 Sample Response:<br>
 
 ```
-{message: "Item added successfully, item:{_id, title, author, price, rating, category, publicationHouse, image, description, quantity }}
+{
+  "message": "Item added successfully",
+  "item": {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here...",
+    "quantity": 1
+  }
+}
 ```
 
 ### **POST /cart/increase/:id**<br>
@@ -134,7 +186,21 @@ Increases the quantity of a cart item<br>
 Sample Response:<br>
 
 ```
-{message: "Item updated successfully, item:{_id, title, author, price, rating, category, publicationHouse, image, description, quantity }}
+{
+  "message": "Item updated successfully",
+  "item": {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here...",
+    "quantity": 3
+  }
+}
 ```
 
 ### **POST /cart/decrease/:id**<br>
@@ -144,7 +210,21 @@ Decreases the quantity of a cart item<br>
 Sample Response:<br>
 
 ```
-{message: "Item updated successfully, item:{_id, title, author, price, rating, category, publicationHouse, image, description, quantity }}
+{
+  "message": "Item updated successfully",
+  "item": {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here...",
+    "quantity": 1
+  }
+}
 ```
 
 ### **DELETE /cart/:id**<br>
@@ -154,7 +234,21 @@ Removes an item from the cart<br>
 Sample Response:<br>
 
 ```
-{message: "Item deleted successfully, item:{_id, title, author, price, rating, category, publicationHouse, image, description, quantity }}
+{
+  "message": "Item deleted successfully",
+  "item": {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here...",
+    "quantity": 1
+  }
+}
 ```
 
 ### **GET /wishlist**<br>
@@ -164,7 +258,21 @@ List all the item in the wishlist<br>
 Sample Response:<br>
 
 ```
-[{_id, title, author, price, rating, category, publicationHouse, image, description, isAddedToWishlist}, ...]
+[
+  {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here...",
+    "isAddedToWishlist": true
+  },
+  ...
+]
 ```
 
 ### **POST /wishlist/:id**<br>
@@ -174,7 +282,21 @@ Adds an item to the wishlist<br>
 Sample Response:<br>
 
 ```
-{ message: "Item added successfully", item: {_id, title, author, price, rating, category, publicationHouse, image, description, isAddedToWishlist}}
+{
+  "message": "Item added successfully",
+  "item": {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here...",
+    "isAddedToWishlist": true
+  }
+}
 ```
 
 ### **DELETE /wishlist/:id**<br>
@@ -184,7 +306,21 @@ Removes an item from the wishlist<br>
 Sample Response:<br>
 
 ```
-{ message: "Item removed successfully", item: {_id, title, author, price, rating, category, publicationHouse, image, description, isAddedToWishlist}}
+{
+  "message": "Item removed successfully",
+  "item": {
+    "_id": "...",
+    "title": "Book Name",
+    "author": "Author Name",
+    "price": 299,
+    "rating": 4.5,
+    "category": "Fiction",
+    "publicationHouse": "Publisher Name",
+    "image": "https://...",
+    "description": "Book description here...",
+    "isAddedToWishlist": false
+  }
+}
 ```
 
 ---
