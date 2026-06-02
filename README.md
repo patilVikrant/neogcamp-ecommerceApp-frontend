@@ -88,9 +88,9 @@ Watch a walkthrough of all the major features of this app:
 
 ## Environment Setup
 
-PORT=5000<br>
-MONGODB_URI=your_mongodb_connection_string<br>
-JWT_SECRET=your_jwt_secret<br>
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
 CLIENT_URL=http://localhost:3000/
 
 ---
@@ -104,20 +104,22 @@ List all books<br>
 Sample Response:<br>
 
 ```
+
 [
-  {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here..."
-  },
-  ...
+{
+"_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here..."
+},
+...
 ]
+
 ```
 
 ### **GET /books/:id**<br>
@@ -127,17 +129,19 @@ List details of single book<br>
 Sample Response:<br>
 
 ```
+
 {
-  "_id": "...",
-  "title": "Book Name",
-  "author": "Author Name",
-  "price": 299,
-  "rating": 4.5,
-  "category": "Fiction",
-  "publicationHouse": "Publisher Name",
-  "image": "https://...",
-  "description": "Book description here..."
+"\_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here..."
 }
+
 ```
 
 ### **GET /cart**<br>
@@ -147,21 +151,23 @@ List details of books added to the cart<br>
 Sample Response:<br>
 
 ```
+
 [
-  {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here...",
-    "quantity": 2
-  },
-  ...
+{
+"_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here...",
+"quantity": 2
+},
+...
 ]
+
 ```
 
 ### **POST /cart**<br>
@@ -171,21 +177,23 @@ Adds a new item to the cart<br>
 Sample Response:<br>
 
 ```
+
 {
-  "message": "Item added successfully",
-  "item": {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here...",
-    "quantity": 1
-  }
+"message": "Item added successfully",
+"item": {
+"\_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here...",
+"quantity": 1
 }
+}
+
 ```
 
 ### **POST /cart/increase/:id**<br>
@@ -195,21 +203,23 @@ Increases the quantity of a cart item<br>
 Sample Response:<br>
 
 ```
+
 {
-  "message": "Item updated successfully",
-  "item": {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here...",
-    "quantity": 3
-  }
+"message": "Item updated successfully",
+"item": {
+"\_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here...",
+"quantity": 3
 }
+}
+
 ```
 
 ### **POST /cart/decrease/:id**<br>
@@ -219,21 +229,23 @@ Decreases the quantity of a cart item<br>
 Sample Response:<br>
 
 ```
+
 {
-  "message": "Item updated successfully",
-  "item": {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here...",
-    "quantity": 1
-  }
+"message": "Item updated successfully",
+"item": {
+"\_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here...",
+"quantity": 1
 }
+}
+
 ```
 
 ### **DELETE /cart/:id**<br>
@@ -243,21 +255,23 @@ Removes an item from the cart<br>
 Sample Response:<br>
 
 ```
+
 {
-  "message": "Item deleted successfully",
-  "item": {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here...",
-    "quantity": 1
-  }
+"message": "Item deleted successfully",
+"item": {
+"\_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here...",
+"quantity": 1
 }
+}
+
 ```
 
 ### **GET /wishlist**<br>
@@ -267,21 +281,23 @@ List all the item in the wishlist<br>
 Sample Response:<br>
 
 ```
+
 [
-  {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here...",
-    "isAddedToWishlist": true
-  },
-  ...
+{
+"_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here...",
+"isAddedToWishlist": true
+},
+...
 ]
+
 ```
 
 ### **POST /wishlist/:id**<br>
@@ -291,21 +307,23 @@ Adds an item to the wishlist<br>
 Sample Response:<br>
 
 ```
+
 {
-  "message": "Item added successfully",
-  "item": {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here...",
-    "isAddedToWishlist": true
-  }
+"message": "Item added successfully",
+"item": {
+"\_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here...",
+"isAddedToWishlist": true
 }
+}
+
 ```
 
 ### **DELETE /wishlist/:id**<br>
@@ -315,21 +333,23 @@ Removes an item from the wishlist<br>
 Sample Response:<br>
 
 ```
+
 {
-  "message": "Item removed successfully",
-  "item": {
-    "_id": "...",
-    "title": "Book Name",
-    "author": "Author Name",
-    "price": 299,
-    "rating": 4.5,
-    "category": "Fiction",
-    "publicationHouse": "Publisher Name",
-    "image": "https://...",
-    "description": "Book description here...",
-    "isAddedToWishlist": false
-  }
+"message": "Item removed successfully",
+"item": {
+"\_id": "...",
+"title": "Book Name",
+"author": "Author Name",
+"price": 299,
+"rating": 4.5,
+"category": "Fiction",
+"publicationHouse": "Publisher Name",
+"image": "https://...",
+"description": "Book description here...",
+"isAddedToWishlist": false
 }
+}
+
 ```
 
 ---
@@ -337,3 +357,4 @@ Sample Response:<br>
 ## Contact
 
 For bugs and feature requests, please reach out to pvikrant248@gmail.com
+```
