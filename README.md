@@ -88,9 +88,9 @@ Watch a walkthrough of all the major features of this app:
 
 ## Environment Setup
 
-PORT=5000
-MONGODB_URI=mongodb+srv://pvikrant248_db_user:Vatican248@cluster0.mgjrmva.mongodb.net/?appName=Cluster0
-JWT_SECRET=your_jwt_secret
+PORT=5000<br>
+MONGODB_URI=mongodb+srv://pvikrant248_db_user:Vatican248@cluster0.mgjrmva.mongodb.net/?appName=Cluster0<br>
+JWT_SECRET=your_jwt_secret<br>
 CLIENT_URL=http://localhost:3000/
 
 ---
