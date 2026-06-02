@@ -89,9 +89,12 @@ Watch a walkthrough of all the major features of this app:
 ## Environment Setup
 
 ```env
+
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
 CLIENT_URL=http://localhost:3000/
+
+```
 
 ---
 
@@ -357,4 +360,7 @@ Sample Response:<br>
 ## Contact
 
 For bugs and feature requests, please reach out to pvikrant248@gmail.com
+
+```
+
 ```
